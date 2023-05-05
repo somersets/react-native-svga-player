@@ -17,7 +17,17 @@ export default class App extends Component {
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<Text style={styles.welcome}>Svga</Text>
 				<View style={styles.container}>
-					{files.map(f => (
+					<RNSvgaPlayer
+							onLoadingEnd={() => {
+								console.log("loading end");
+							}}
+							onFinished={() => {
+								console.log("onFinished")
+							}}
+							style={{width: 200, height: 200}}
+							source={`https://raw.githubusercontent.com/yyued/SVGAPlayer-iOS/master/SVGAPlayer/Samples/Goddess.svga`}
+					/>
+					{/*{files.map(f => (
 						<View
 							key={f}
 							style={{
@@ -29,7 +39,7 @@ export default class App extends Component {
 							/>
 							<Text>{f}</Text>
 						</View>
-					))}
+					))}*/}
 				</View>
 			</ScrollView>
 		);

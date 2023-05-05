@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3E7B58A1CC2AC0600A0062D /* RNSvgaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNSvgaPlayer.m */; };
+		516E00052A04C3380057FF92 /* libRNSvgaPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 134814201AA4EA6300B7C361 /* libRNSvgaPlayer.a */; };
+		516E000A2A04D0FF0057FF92 /* RNSvgaEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 516E00062A04C9930057FF92 /* RNSvgaEvents.m */; };
+		516E000B2A04D1020057FF92 /* RNSvgaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNSvgaPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNSvgaPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNSvgaPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		516E00062A04C9930057FF92 /* RNSvgaEvents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNSvgaEvents.m; sourceTree = "<group>"; };
+		516E00092A04D0FB0057FF92 /* RNSvgaEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNSvgaEvents.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNSvgaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNSvgaPlayer.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNSvgaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNSvgaPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				516E00052A04C3380057FF92 /* libRNSvgaPlayer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +55,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				516E00062A04C9930057FF92 /* RNSvgaEvents.m */,
+				516E00092A04D0FB0057FF92 /* RNSvgaEvents.h */,
 				B3E7B5881CC2AC0600A0062D /* RNSvgaPlayer.h */,
 				B3E7B5891CC2AC0600A0062D /* RNSvgaPlayer.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -95,6 +102,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -112,7 +120,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E7B58A1CC2AC0600A0062D /* RNSvgaPlayer.m in Sources */,
+				516E000A2A04D0FF0057FF92 /* RNSvgaEvents.m in Sources */,
+				516E000B2A04D1020057FF92 /* RNSvgaPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +225,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",

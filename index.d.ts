@@ -2,6 +2,7 @@ import React from 'react';
 import { ViewProps } from 'react-native';
 interface SVGAPlayerProps extends ViewProps {
     onFinished?: () => void;
+    onLoadingEnd?: () => void;
     onFrame?: (value: number) => void;
     onPercentage?: (value: number) => void;
     source: string;

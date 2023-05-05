@@ -45,6 +45,7 @@ public class RNSvgaPlayerManager extends SimpleViewManager<RCTSVGAImageView> {
                     @Override
                     public void onComplete(SVGAVideoEntity videoItem) {
                         view.setVideoItem(videoItem);
+                        view.onLoadingEnd();
                         view.startAnimation();
                     }
 
@@ -62,6 +63,7 @@ public class RNSvgaPlayerManager extends SimpleViewManager<RCTSVGAImageView> {
                     @Override
                     public void onComplete(SVGAVideoEntity videoItem) {
                         view.setVideoItem(videoItem);
+                        view.onLoadingEnd();
                         view.startAnimation();
                     }
                 });

@@ -10,6 +10,7 @@
 
 #import "SVGAPlayer.h"
 #import "SVGAParser.h"
+#import "RNSvgaEvents.h"
 #import <objc/runtime.h>
 
 @interface SVGAPlayer (React)<SVGAPlayerDelegate>
@@ -19,6 +20,7 @@
 @property(nonatomic, assign) NSInteger toFrame;
 @property(nonatomic, assign) NSInteger toPercentage;
 @property(nonatomic, copy) RCTBubblingEventBlock onFinished;
+@property(nonatomic, copy) RCTBubblingEventBlock onLoadingEnd;
 @property(nonatomic, copy) RCTBubblingEventBlock onFrame;
 @property(nonatomic, copy) RCTBubblingEventBlock onPercentage;
 
@@ -31,14 +33,19 @@ static int kReactCurrentStateIdentifier;
 static int kReactOnFinishedIdentifier;
 static int kReactOnFrameIdentifier;
 static int kReactOnPercentageIdentifier;
+static int kReactOnLoadingEndIdentifier;
+
 
 - (void)loadWithSource:(NSString *)source {
     SVGAParser *parser = [[SVGAParser alloc] init];
+    RNSvgaEvents *rnSvgaEvents = [[RNSvgaEvents alloc]initWithIdentifier:kReactOnLoadingEndIdentifier];
+    
     if ([source hasPrefix:@"http"] || [source hasPrefix:@"https"]) {
         [parser parseWithURL:[NSURL URLWithString:source]
              completionBlock:^(SVGAVideoEntity *_Nullable videoItem) {
                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                  [self setVideoItem:videoItem];
+                 [rnSvgaEvents onLoadingEnd];
                  [self startAnimation];
                }];
              }
@@ -51,6 +58,7 @@ static int kReactOnPercentageIdentifier;
                   completionBlock:^(SVGAVideoEntity *_Nonnull videoItem) {
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                       [self setVideoItem:videoItem];
+                      [rnSvgaEvents onLoadingEnd];
                       [self startAnimation];
                     }];
                   }
@@ -93,6 +101,10 @@ static int kReactOnPercentageIdentifier;
 
 - (void)setOnFinished:(RCTBubblingEventBlock)onFinished {
     objc_setAssociatedObject(self, &kReactOnFinishedIdentifier, onFinished, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void)setOnLoadingEnd:(RCTBubblingEventBlock)onLoadingEnd {
+    objc_setAssociatedObject(self, &kReactOnLoadingEndIdentifier, onLoadingEnd, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (RCTBubblingEventBlock)onFinished {
@@ -168,6 +180,7 @@ RCT_EXPORT_VIEW_PROPERTY(currentState, NSString)
 RCT_EXPORT_VIEW_PROPERTY(toFrame, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(toPercentage, NSInteger)
 RCT_EXPORT_VIEW_PROPERTY(onFinished, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onLoadingEnd, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFrame, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onPercentage, RCTBubblingEventBlock)
 

@@ -62,6 +62,11 @@ export default class SVGAPlayer extends React.Component {
                         this.props.onFinished();
                     }
                 }
+                else if (action === 'onLoadingEnd') {
+                    if (typeof this.props.onLoadingEnd === 'function') {
+                        this.props.onLoadingEnd();
+                    }
+                }
                 else if (action === 'onFrame') {
                     if (typeof this.props.onFrame === 'function') {
                         this.props.onFrame(event.nativeEvent.value);
@@ -79,6 +84,9 @@ export default class SVGAPlayer extends React.Component {
                 eventListeners.onFrame = (event) => {
                     this.props.onFrame(event.nativeEvent.value);
                 };
+            }
+            if (typeof this.props.onLoadingEnd === 'function') {
+                this.props.onLoadingEnd();
             }
             if (typeof this.props.onPercentage === 'function') {
                 eventListeners.onPercentage = (event) => {

@@ -4,6 +4,7 @@ const RNSvgaPlayer = requireNativeComponent('RNSvgaPlayer')
 
 interface SVGAPlayerProps extends ViewProps {
   onFinished?: () => void
+  onLoadingEnd?: () => void
   onFrame?: (value: number) => void
   onPercentage?: (value: number) => void
   source: string
@@ -85,6 +86,10 @@ export default class SVGAPlayer extends React.Component<
           if (typeof this.props.onFinished === 'function') {
             this.props.onFinished()
           }
+        } else if (action === 'onLoadingEnd') {
+          if (typeof this.props.onLoadingEnd === 'function') {
+            this.props.onLoadingEnd()
+          }
         } else if (action === 'onFrame') {
           if (typeof this.props.onFrame === 'function') {
             this.props.onFrame(event.nativeEvent.value)
@@ -102,6 +107,9 @@ export default class SVGAPlayer extends React.Component<
         }) => {
           this.props.onFrame!(event.nativeEvent.value)
         }
+      }
+      if (typeof this.props.onLoadingEnd === 'function') {
+        this.props.onLoadingEnd()
       }
       if (typeof this.props.onPercentage === 'function') {
         eventListeners.onPercentage = (event: {

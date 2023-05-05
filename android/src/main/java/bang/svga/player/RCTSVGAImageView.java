@@ -12,8 +12,10 @@ import com.opensource.svgaplayer.SVGAImageView;
 
 public class RCTSVGAImageView extends SVGAImageView {
     protected String currentState;
+    private Context context = null;
     public RCTSVGAImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
         this.setCallback(new SVGACallback() {
 
             @Override
@@ -54,6 +56,14 @@ public class RCTSVGAImageView extends SVGAImageView {
                         receiveEvent(getId(), "topChange", map);
             }
         });
+    }
+
+    public void onLoadingEnd() {
+        WritableMap map = Arguments.createMap();
+        map.putString("action", "onLoadingEnd");
+        ReactContext reactContext = (ReactContext) context;
+        reactContext.getJSModule(RCTEventEmitter.class).
+                receiveEvent(getId(), "topChange", map);
     }
 
 }
