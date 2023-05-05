@@ -27,6 +27,10 @@
     "url": "git+https://github.com/bang88/react-native-svga-player.git",
     "baseUrl": "https://github.com/bang88/react-native-svga-player"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "react-native"
   ],
